@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,8 @@ Route::prefix('admin')->group(function() {
 
     Route::get('/', [AdminHomeController::class, 'index'])->name('admin');
     Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::post('login', [LoginController::class, 'authenticate']);
+    Route::get('register', [RegisterController::class, 'index'])->name('register');
+    Route::post('register', [RegisterController::class, 'register']);
     // chama a login caso o usuario não esteja verificado
 });

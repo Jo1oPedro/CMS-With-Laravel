@@ -1,1 +1,3 @@
-@extends('adminlte::login-page')
+@extends('adminlte::auth/login')
+
+@section('title', 'Login');

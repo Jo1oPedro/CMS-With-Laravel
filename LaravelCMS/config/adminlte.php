@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Laravel CMS',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' - Laravel CMS',
 
     /*
     |--------------------------------------------------------------------------
@@ -190,8 +190,8 @@ return [
     'use_route_url' => false,
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
-    'login_url' => 'login',
-    'register_url' => 'register',
+    'login_url' => 'admin/login',
+    'register_url' => 'admin/register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
