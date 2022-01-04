@@ -10,6 +10,8 @@ class AdminHomeController extends Controller
     
     public function __construct() {
         $this->middleware('auth');
+        //se o usuario não está logado ele chama a rota com name login
+        // essa rota está na web.php
     }
 
     public function index() {

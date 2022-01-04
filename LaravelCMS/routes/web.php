@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\Auth\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('admin')->group(function() {
 
-    Route::get('/', [AdminHomeController::class, 'index']);
-
+    Route::get('/', [AdminHomeController::class, 'index'])->name('admin');
+    Route::get('login', [LoginController::class, 'index'])->name('login');
+    // chama a login caso o usuario não esteja verificado
 });
