@@ -15,11 +15,12 @@
 
 @endsection
 
+
 @section('css')
-    <!--<h3>Caso queira mudar o css de alguma coisa</h3>-->
-    <link rel="stylesheet" href="/assets/css/custom.css" />
+    <!--<h3>Caso queira mudar o css de alguma coisa</h3>
+    <link rel="stylesheet" href="/assets/css/custom.css" />-->
 @endsection
 
 @section('js')
-    <script>alert("Rodando")</script>
+    <!--<script>alert("Rodando")</script>-->
 @endsection

@@ -39,6 +39,6 @@ class LoginController extends Controller
     }
 
     public function index() {
-        echo "Tela de login";
+        return view('admin.login');
     }
 }
