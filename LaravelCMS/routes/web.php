@@ -30,5 +30,7 @@ Route::prefix('admin')->group(function() {
     Route::post('login', [LoginController::class, 'authenticate']);
     Route::get('register', [RegisterController::class, 'index'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
     // chama a login caso o usuario não esteja verificado
 });
