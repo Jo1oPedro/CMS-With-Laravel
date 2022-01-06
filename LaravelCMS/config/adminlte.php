@@ -226,11 +226,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /*[
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
-        ],
+            //'topnav_right' => true,
+        ],*/
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -241,17 +241,27 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        [
+        /*[
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url'  => 'admin',
+            //'can'  => 'manage-blog',
+        ],*/
+        [
+            'text'        => 'Dashboard',
+            'url'         => 'admin',
+            'icon'        => 'far fa-fw fa-file',
+            //'label'       => 4,
+            //'label_color' => 'success',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Minhas Páginas',
+            'url'         => 'admin/page',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Meus Usuários',
+            'url'         => 'admin/users',
+            'icon'        => 'far fa-fw fa-file',
         ],
         ['header' => 'account_settings'],
         [
@@ -259,7 +269,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
+        /*[
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
@@ -317,7 +327,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

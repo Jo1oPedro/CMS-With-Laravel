@@ -11,6 +11,7 @@
 
 @section('content')
 
+    Olá {{ Auth::user()->name }}
     <h2>Conteúdo da minha pagina</h2>
 
 @endsection
