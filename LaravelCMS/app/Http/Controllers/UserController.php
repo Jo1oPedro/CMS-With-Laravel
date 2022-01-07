@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,13 +16,21 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('can:edit-users');
+    }
+
     public function index()
     {
         //$users = User::all();
 
+        $loggedId = Auth::id();
         $users = User::paginate(10);
         return view('admin.users.index', [
-            'users' => $users
+            'users' => $users,
+            'loggedId' => $loggedId
         ]);
     }
 
@@ -69,7 +78,7 @@ class UserController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso');
     }
 
     /**
@@ -207,7 +216,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuário editado com sucesso');
     }
 
     /**
@@ -218,6 +227,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $loggedId = Auth::id();
+
+        if($loggedId != $id) {
+            $user = User::find($id);
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso');
+        }
+
+        return redirect()->route('users.index');
     }
 }
