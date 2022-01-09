@@ -34,7 +34,7 @@
     <div class="card">
 
         <div class="card-body">
-            <form action="{{route('profile.save')}}" method="POST" class="form-horizontal">
+            <form action="{{route('profile.save')}}" method="POST" class="form-horizontal" onsubmit="return confirm('Tem certeza que deseja editar?')">
                 @csrf
                 @method('PUT')
                 

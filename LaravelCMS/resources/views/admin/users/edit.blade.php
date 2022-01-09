@@ -31,7 +31,7 @@
     <div class="card">
 
         <div class="card-body">
-            <form action="{{route('users.update', ['user' => $user->id])}}" method="POST" class="form-horizontal">
+            <form action="{{route('users.update', ['user' => $user->id])}}" method="POST" class="form-horizontal" onsubmit="return confirm('Tem certeza que deseja editar?')">
                 @csrf
                 @method('PUT')
                 <div class="form-group row">
