@@ -5,7 +5,8 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::prefix('admin')->group(function() {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     //Route::get('users', [UserController::class, 'index'])->name('users');
     Route::resource('users', UserController::class);
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profilesave', [ProfileController::class, 'save'])->name('profile.save');
 });

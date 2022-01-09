@@ -1,11 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Usuário')
+
+@section('title', 'Meu Perfil')
 
 @section('content_header')
-    <h1>
-        Editar Usuário
-    </h1>
+
+    <h1>Meu Perfil</h1>
+
 @endsection
 
 @section('content')
@@ -26,14 +27,17 @@
 
     @endif
 
-    
+    @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+    @endif
 
     <div class="card">
 
         <div class="card-body">
-            <form action="{{route('users.update', ['user' => $user->id])}}" method="POST" class="form-horizontal">
+            <form action="{{route('profile.save')}}" method="POST" class="form-horizontal">
                 @csrf
                 @method('PUT')
+                
                 <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nome completo</label>
                         <div class="col-sm-10">
@@ -66,5 +70,17 @@
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
+
+
+@endsection
+
+
+@section('css')
+    <!--<h3>Caso queira mudar o css de alguma coisa</h3>
+    <link rel="stylesheet" href="/assets/css/custom.css" />-->
+@endsection
+
+@section('js')
+    <!--<script>alert("Rodando")</script>-->
 @endsection
