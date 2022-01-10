@@ -39,11 +39,27 @@ class AdminHomeController extends Controller
         // Contagem de Usuários
         $userCount = User::count();
 
+        // Contagem para o pagePie
+        $pagePie = [];
+        $pagePieColor = [];
+        $visitsAll = Visitor::selectRaw('page, count(page) as c')->groupBy('page')->get();
+        foreach($visitsAll as $visit) {
+            $pagePie[ $visit['page'] ] = intval($visit['c']);
+            $pagePieColor[] = 'rgba('.rand(0, 255).', '.rand(0,255).', '.rand(0,255). ')';
+        }
+
+        $pageLabels = json_encode( array_keys($pagePie) );
+        $pageValues = json_encode( array_Values($pagePie) );
+        $pageColor = json_encode( array_Values($pagePieColor));
+
         return view('site.home', [
             'visitsCount' => $visitsCount,
             'onlineCount' => $onlineCount,
             'pageCount' => $pageCount,
-            'userCount' => $userCount
+            'userCount' => $userCount,
+            'pageLabels' => $pageLabels,
+            'pageValues' => $pageValues,
+            'pageColor' => $pageColor
         ]);
     }
 
