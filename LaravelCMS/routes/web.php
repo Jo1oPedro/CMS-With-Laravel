@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,4 +47,7 @@ Route::prefix('admin')->group(function() {
     Route::get('settings', [SettingController::class, 'index'])->name('settings');
 
     Route::put('settingssave', [SettingController::class, 'save'])->name('settings.save');
+
+    Route::resource('pages', PageController::class);
+
 });

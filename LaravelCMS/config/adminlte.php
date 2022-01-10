@@ -255,7 +255,7 @@ return [
         ],
         [
             'text'        => 'Minhas Páginas',
-            'url'         => 'admin/page',
+            'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
         ],
         [
