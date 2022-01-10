@@ -69,8 +69,13 @@
             '{{asset('assets/css/content.css')}}'
         ],
         images_upload_url:'{{route('imageupload')}}',
+        //passa pela api
         images_upload_credentials:true,
+        //só permite que usuarios logados possam enviar imagens
         convert_urls:false
+        //não deixa converter a url para uma relativa,
+        //o que iria prejudicar o site na hora de exibir
+        //em outra página
     });
 
 </script>
