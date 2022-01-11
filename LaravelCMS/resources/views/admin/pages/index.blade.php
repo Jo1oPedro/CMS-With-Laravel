@@ -31,7 +31,7 @@
                         <td>{{$page->id}}</td>
                         <td>{{$page->title}}</td>
                         <td>
-                            <a href="" target="_blank" class="btn btn-sm btn-success">Ver</a>
+                            <a href="{{$page->slug}}" target="_blank" class="btn btn-sm btn-success">Ver</a>
                             <a href="{{route('pages.edit', ['page' => $page->id])}}" class="btn btn-sm btn-info"> Editar </a>
                             <form class="d-inline" method="POST" action="{{route('pages.destroy', ['page' => $page->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                 @method('DELETE')

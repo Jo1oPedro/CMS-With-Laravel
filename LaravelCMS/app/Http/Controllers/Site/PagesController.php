@@ -9,15 +9,14 @@ use App\Models\Page;
 class PagesController extends Controller
 {
     public function index($slug) {
+        //$string = explode(" ", $slug);
         $page = Page::where('slug', $slug)->first();
         if($page) {
-            
             return view('site.page', [
                 'page' => $page
             ]);
 
-        } else {
-            abort(404);
         }
+        abort(404);
     }
 }

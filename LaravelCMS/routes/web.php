@@ -52,6 +52,8 @@ Route::prefix('admin')->group(function() {
 
     Route::resource('pages', PageController::class);
 
+    Route::fallback([PagesController::class, 'index']);
+
 });
 
 Route::fallback([PagesController::class, 'index']);
