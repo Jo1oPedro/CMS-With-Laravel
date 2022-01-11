@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Site\PagesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,3 +53,5 @@ Route::prefix('admin')->group(function() {
     Route::resource('pages', PageController::class);
 
 });
+
+Route::fallback([PagesController::class, 'index']);
