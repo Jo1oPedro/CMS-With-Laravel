@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\PageController;
 
 //Route::get('/', [HomeController::class, 'index']);
 Route::get('/', [LoginController::class, 'index']);
-
+Route::get('/home', [HomeController::class, 'index']);
 //Auth::routes();
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
