@@ -17,15 +17,19 @@ class AdminHomeController extends Controller
         // essa rota está na web.php
     }
 
-    public function index() {
+    public function index(Request $request) {
         
         $visitsCount = 0;
         $onlineCount = 0;
         $pageCount = 0;
         $userCount = 0;
-
+        $interval = intval($request->input('interval', 1));
         // Contagem de Visitantes
-        $visitsCount = Visitor::count();
+        if($interval > 6 || $interval < 1) {
+            $interval = 6;
+        }
+        $dateInterval = date('Y-m-d H:i:s', strtotime('-'.$interval.'months'));
+        $visitsCount = Visitor::where('date_access', '>=', $dateInterval)->count();
         
         // Contagem de Usuários Online
         $dateLimit = date('Y-m-d H:i:s', strtotime('-5 minutes'));
@@ -42,9 +46,10 @@ class AdminHomeController extends Controller
         // Contagem para o pagePie
         $pagePie = [];
         $pagePieColor = [];
-        $visitsAll = Visitor::selectRaw('page, count(page) as c')->groupBy('page')->get();
+
+        $visitsAll = Visitor::selectRaw('page, count(page) as val')->groupBy('page')->where('date_access', '>=', $dateInterval)->get();
         foreach($visitsAll as $visit) {
-            $pagePie[ $visit['page'] ] = intval($visit['c']);
+            $pagePie[ $visit['page'] ] = intval($visit['val']);
             $pagePieColor[] = 'rgba('.rand(0, 255).', '.rand(0,255).', '.rand(0,255). ')';
         }
 
@@ -59,7 +64,8 @@ class AdminHomeController extends Controller
             'userCount' => $userCount,
             'pageLabels' => $pageLabels,
             'pageValues' => $pageValues,
-            'pageColor' => $pageColor
+            'pageColor' => $pageColor,
+            'dateInterval' => $interval
         ]);
     }
 
