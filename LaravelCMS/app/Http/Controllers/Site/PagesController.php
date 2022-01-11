@@ -15,8 +15,22 @@ class PagesController extends Controller
         $page = Page::where('slug', $slug)->first();
         if($page) {
             $tableVisitor = new Visitor;
-            $visitors = Visitor::find($request->ip());
-            if(!$visitors) {
+            $visitors = Visitor::where('ip', $request->ip())->first();
+            if($visitors) {
+                $visitorsPage = Visitor::
+                where([
+                    ['ip', '=', $request->ip()],
+                    ['page', '=', $slug]
+                ])
+                ->first();
+
+                if(!$visitorsPage) {
+                    $tableVisitor->ip = $request->ip();
+                    $tableVisitor->date_access = date('Y-m-d H:i:s');
+                    $tableVisitor->page = $slug;
+                    $tableVisitor->save();
+                }
+            } else {
                 $tableVisitor->ip = $request->ip();
                 $tableVisitor->date_access = date('Y-m-d H:i:s');
                 $tableVisitor->page = $slug;
